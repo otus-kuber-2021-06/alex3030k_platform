@@ -13,4 +13,4 @@ RUN echo "}" >> /etc/nginx/conf.d/web.conf
 RUN echo "}" >> /etc/nginx/conf.d/web.conf
 RUN mkdir -p /app
 RUN usermod -u 1001 nginx &&\
- chown nginx /app
+RUN chown nginx /app
