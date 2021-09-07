@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  labels:
-    app: frontend
 spec:
   replicas: 3
   selector:
@@ -17,15 +15,19 @@ spec:
       containers: 
       - name: server
         image: alex3030k/hipster-frontend:v0.2
+        ports:
+          - containerPort: 8080
         readinessProbe:
           initialDelaySeconds: 10
           httpGet:
-            path: "/_health"
+            path: "/_healthz"
             port: 8080
             httpHeaders:
             - name: "Cookie"
               value: "shop_session-id=x-readiness-probe"
         env:
+          - name: PORT
+            value: "8080"
           - name: PRODUCT_CATALOG_SERVICE_ADDR
             value: "productcatalogservice:3550"
           - name: CURRENCY_SERVICE_ADDR
