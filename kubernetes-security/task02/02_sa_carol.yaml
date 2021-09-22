@@ -7,7 +7,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:  
-  name: cr-pod-reader
+  name: cr-pod-reader  
 rules:
 - apiGroups: [""] # "" означает apiGroup под именем core или legacy
   resources: ["pods"]
@@ -19,7 +19,7 @@ metadata:
   name: all-sa-ns-prometeus # под этим именем мы потом увидим этот RoleBinding
 subjects:
 - kind: Group # Group, ServiceAccount
-  name: system:serviceaccounts # имя чувствительно к регистру
+  name: system:ServiceAccounts # имя чувствительно к регистру
   namespace: prometheus
 roleRef:
   kind: ClusterRole # явно указываем Role или ClusterRole
