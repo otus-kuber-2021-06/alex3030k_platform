@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bob
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sa-bob-cluster-admin # под этим именем мы потом увидим этот RoleBinding  
+subjects:
+- kind: ServiceAccount # Group, ServiceAccount
+  name: bob # имя чувствительно к регистру
+  namespace: default
+roleRef:
+  kind: ClusterRole # явно указываем Role или ClusterRole
+  name: admin # а тут имя той Role или ClusterRole к которой мы биндимся
+  apiGroup: rbac.authorization.k8s.io
