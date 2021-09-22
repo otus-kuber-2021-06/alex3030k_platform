@@ -19,8 +19,7 @@ metadata:
   name: all-sa-ns-prometeus # под этим именем мы потом увидим этот RoleBinding
 subjects:
 - kind: Group # Group, ServiceAccount
-  name: system:ServiceAccounts # имя чувствительно к регистру
-  namespace: prometheus
+  name: system:serviceaccounts:prometheus # имя чувствительно к регистру  
 roleRef:
   kind: ClusterRole # явно указываем Role или ClusterRole
   name: cr-pod-reader # а тут имя той Role или ClusterRole к которой мы биндимся
